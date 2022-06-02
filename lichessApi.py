@@ -12,7 +12,7 @@ def getRealTimeUserStatus(usernames):
 ##  Get the user public data
 #   @param username of the user
 def getUserPublicData(username):
-    r = requests.get(lichess_url + f"api/users/{username}")
+    r = requests.get(lichess_url + f"api/user/{username}")
     if r: return r.json()
 
 
@@ -74,7 +74,7 @@ def getUserDashboard(username, days = None):
 #   @param token to authenticate
 #   @param team_id the id of the team
 def getTeamJoinRequest(token, team_id):
-    r = requests.get(lichess_url + f"api/team/{team_id}/users", headers={"Authorization" : f"Bearer {token}"})
+    r = requests.get(lichess_url + f"api/team/{team_id}/requests", headers={"Authorization" : f"Bearer {token}"})
     if r: return r.json()
 
 
@@ -108,5 +108,5 @@ def messageTeamMembers(token, team_id, message):
 ##  Get my profile data
 #   @param token to authenticate
 def getProfile(token):
-    r = requests.post(lichess_url + f"api/account", headers={"Authorization" : f"Bearer {token}"})
+    r = requests.get(lichess_url + f"api/account", headers={"Authorization" : f"Bearer {token}"})
     if r: return r.json()
